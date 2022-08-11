@@ -10,6 +10,7 @@ Date: 2022-March-27 */
 #include <time.h>
 #include <unistd.h>
 #include <bitset>
+#include <sstream>
 
 #define SIZE1 202			// No. of 1 byte instructions
 #define SIZE2 18			// No. of 2 byte instructions
@@ -541,16 +542,20 @@ void print_hexadecimal()
 	}
 }
 
+char array_return(char &ch)
+{
+	return ch = ::toupper(ch);
+}
 void strupr(string &str)
 {	// Convert string into uppercase character-wise
-	for_each(str.begin(), str.end(), [](char &ch)
-			 { ch = ::toupper(ch); });
+	for_each(str.begin(), str.end(), array_return);
 }
 
 char *get_name_of(string str)
 {
+	string os = "windows";
 	int i;
-	if (DEVICE != "windows")
+	if (DEVICE != os)
 	{
 		system("clear");
 	}

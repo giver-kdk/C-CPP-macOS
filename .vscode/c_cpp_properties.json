@@ -1,0 +1,37 @@
+// {
+//     "configurations": [
+//         {
+//             "name": "macos",
+//             "includePath": [
+//                 "${workspaceFolder}/**"
+//                 // "/home/giver_kdk/Qt/6.2.3/gcc_64/include/**",
+//                 // "/home/giver_kdk/Qt/6.2.3/gcc_64/include/QtWidgets/**",
+//                 // "/home/giver_kdk/Qt/6.2.3/gcc_64/include/QtCore/**",
+//                 // "/home/giver_kdk/Qt/6.2.3/gcc_64/include/QtGui/**"
+//             ],
+//             "defines": [],
+//             "compilerPath": "/usr/local/bin/gcc-12",
+//             "cStandard": "gnu17",
+//             "cppStandard": "gnu++14",
+//             "intelliSenseMode": "macos-gcc-x86"
+//         }
+//     ],
+//     "version": 4
+// }
+{
+    "configurations": [
+      {
+        "name": "Mac",
+        "includePath": ["${workspaceFolder}/**"],
+        "defines": [],
+        "macFrameworkPath": [
+          "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        ],
+        "compilerPath": "/usr/local/Cellar/gcc/12.1.0/bin/gcc-12",
+        "cStandard": "gnu11",
+        "cppStandard": "gnu++17",
+        "intelliSenseMode": "gcc-x64"
+      }
+    ],
+    "version": 4
+  }
