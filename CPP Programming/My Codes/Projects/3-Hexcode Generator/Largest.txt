@@ -1,0 +1,22 @@
+//Program ro do tthisi
+LXI H, 2000H
+MVI M, 1H
+INX H
+MVI M, 2H			
+INX H
+MVI M, 8H		//Hiello
+INX H
+MVI M, 4H
+INX H
+MVI M, 6H		; Thsi is thisisi
+MVI C, 5H
+LXI H, 2000H
+MVI A, 00H
+NEXT: CMP M
+JNC SKIP
+MOV A, M
+SKIP: INX H
+DCR C
+JNZ NEXT
+STA 3000H
+HLT
