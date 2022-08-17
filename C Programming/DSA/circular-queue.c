@@ -1,50 +1,51 @@
+// Program to implement circular queue
 #include <stdio.h>
 #include <stdlib.h>
 #define SIZE 5
-int queue[SIZE];
-int front = 0;
-int rear = -1;
+int cQueue[SIZE];
+int front = SIZE - 1;
+int rear = SIZE - 1;
 
-void Enqueue(int queue[], int num)
+void Enqueue(int cQueue[], int num)
 {
-    if(rear == SIZE - 1)
+    if((rear + 1) % SIZE == front)
     {
         printf("\nQueue Overflow");
     }
     else
     {
-        rear = rear + 1;
-        queue[rear] = num;
+        rear = (rear + 1) % SIZE;
+        cQueue[rear] = num;
     }
 }
-void Dequeue(int queue[])
+void Dequeue(int cQueue[])
 {
     int dt;
-    if(rear < front)
+    if(front == rear)
     {
         printf("\nQueue Underflow");
     }
     else
     {
-        dt = queue[front];
-        front = front + 1;
+        front = (front + 1) % SIZE;
+        dt = cQueue[front];
         printf("\nDeleted item = %d", dt);
     }
 }
 
-void display(int queue[])
+void display(int cQueue[])
 {
     int i;
-    if(rear < front)
+    if(rear == front)
     {
         printf("\nQueue is empty");
     }
     else
     {
         printf("\nContent of queue is: \n");
-        for(i = front; i <= rear; i++)
+        for(i = (front + 1) % SIZE; i != rear + 1; i = (i + 1) % SIZE)
         {
-            printf("%d\t", queue[i]);
+            printf("%d\t", cQueue[i]);
         }
     }
 }
@@ -62,13 +63,13 @@ int main()
             case 1:
             printf("Enter the no. you want: ");
             scanf("%d", &num);
-            Enqueue(queue, num);
+            Enqueue(cQueue, num);
             break;
             case 2:
-            Dequeue(queue);
+            Dequeue(cQueue);
             break;
             case 3:
-            display(queue);
+            display(cQueue);
             break;
             case 4:
             exit(0);
