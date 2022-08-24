@@ -12,8 +12,6 @@ int main()
 }
 long int sum(int N)
 {
-    if(N == 0)                         //Acts as condition to terminate recursion
-		return 0;
-    else
-        return (N + sum(N-1));     
+    if(N == 0) return 0;
+    else return (N + sum(N-1));     
 }

@@ -13,8 +13,6 @@ int main()
 long int factorial(int N)
 {
 	// Acts as condition to terminate recursion
-    if (N == 0) 
-		return 1;
-    else 
-		return N * factorial(N - 1);
+    if (N == 0) return 1;
+    else return N * factorial(N - 1);
 }

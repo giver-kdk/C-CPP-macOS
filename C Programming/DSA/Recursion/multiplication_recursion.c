@@ -12,8 +12,7 @@ int main()
 }
 long int product(int x, int y)
 {
-    if(y == 0)                         //Acts as condition to terminate recursion
-		return 0;
-    else
-        return (x + product(x, y-1));     
+	//Acts as condition to terminate recursion
+    if(y == 0) return 0;
+    else return (x + product(x, y-1));     
 }
