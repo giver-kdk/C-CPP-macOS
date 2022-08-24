@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 
 /*This program calculates the sum of the series 1+2+3+....n.*/
 int do_sum(int term);

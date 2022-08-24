@@ -43,7 +43,7 @@ void display(int cQueue[])
     else
     {
         printf("\nContent of queue is: \n");
-        for(i = (front + 1) % SIZE; i != rear + 1; i = (i + 1) % SIZE)
+        for(i = (front + 1) % SIZE; i != (rear + 1) % SIZE; i = (i + 1) % SIZE)
         {
             printf("%d\t", cQueue[i]);
         }
