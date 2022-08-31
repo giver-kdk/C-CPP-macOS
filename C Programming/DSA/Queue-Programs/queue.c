@@ -7,7 +7,7 @@ int rear = -1;
 
 void Enqueue(int queue[], int num)
 {
-    if(rear == SIZE - 1)
+    if (rear == SIZE - 1)
     {
         printf("\nQueue Overflow");
     }
@@ -20,7 +20,7 @@ void Enqueue(int queue[], int num)
 void Dequeue(int queue[])
 {
     int dt;
-    if(rear < front)
+    if (rear < front)
     {
         printf("\nQueue Underflow");
     }
@@ -35,14 +35,14 @@ void Dequeue(int queue[])
 void display(int queue[])
 {
     int i;
-    if(rear < front)
+    if (rear < front)
     {
         printf("\nQueue is empty");
     }
     else
     {
         printf("\nContent of queue is: \n");
-        for(i = front; i <= rear; i++)
+        for (i = front; i <= rear; i++)
         {
             printf("%d\t", queue[i]);
         }
@@ -53,24 +53,24 @@ int main()
 {
     int num, choice;
     printf("1. Enqueue\n2. Dequeue \n3. Display\n4. Exit");
-    while(1)
+    while (1)
     {
         printf("\nEnter your choice: ");
         scanf("%d", &choice);
-        switch(choice)
+        switch (choice)
         {
-            case 1:
+        case 1:
             printf("Enter the no. you want: ");
             scanf("%d", &num);
             Enqueue(queue, num);
             break;
-            case 2:
+        case 2:
             Dequeue(queue);
             break;
-            case 3:
+        case 3:
             display(queue);
             break;
-            case 4:
+        case 4:
             exit(0);
         }
     }

@@ -30,5 +30,5 @@ int main()
         IV = IV + 2*y[i];
     }
     IV = IV * (h / 2);
-    printf("The integral value is %f", IV);
+    printf("The integral value is %f\n", IV);
 }
