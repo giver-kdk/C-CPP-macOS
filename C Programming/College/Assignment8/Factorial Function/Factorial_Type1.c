@@ -4,16 +4,16 @@
 
 void find_factorial();
 
-void main()
+int main()
 {
     find_factorial();
 }
 void find_factorial()
 {
-    int i, num, factorial=1;
+    int num, factorial=1;
     printf("Enter any number: ");
     scanf("%d", &num);
-    for(i=1; i<=num; i++)
+    for(int i=1; i<=num; i++)
     {
         factorial= factorial* i;
     }
