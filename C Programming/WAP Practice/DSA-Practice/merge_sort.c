@@ -1,39 +1,39 @@
 #include <stdio.h>
 
-int a[11];
-int b[10];
-
-void merging(int low, int mid, int high)
+void merging(int a[10], int low, int mid, int high)
 {
-	int l1, l2, i;
-	for (l1 = low, l2 = mid + 1, i = low; l1 <= mid && l2 <= high; i++)
+	int i, j, k, temp[10];
+	i = low;
+	j = mid + 1;
+	k = low;
+	while(i <= mid && j <= high)
 	{
-		if (a[l1] <= a[l2])
-			b[i] = a[l1++];
-		else
-			b[i] = a[l2++];
+		if(a[i] < a[j])
+			temp[k++] = a[i];		// Assign t "k"th index and increment "k"
+		else 
+			temp[k++] = a[j++];
 	}
 
-	while (l1 <= mid)
-		b[i++] = a[l1++];
+	while (i <= mid)
+		temp[k++] = a[i++];
 
-	while (l2 <= high)
-		b[i++] = a[l2++];
+	while (j <= high)
+		temp[k++] = a[j++];
 
 	for (i = low; i <= high; i++)
-		a[i] = b[i];
+		a[i] =temp[i];
 }
 
-void sort(int low, int high)
+void merge_sort(int a[10], int low, int high)
 {
 	int mid;
 
 	if (low < high)
 	{
 		mid = (low + high) / 2;
-		sort(low, mid);
-		sort(mid + 1, high);
-		merging(low, mid, high);
+		merge_sort(a, low, mid);
+		merge_sort(a, mid + 1, high);
+		merging(a, low, mid, high);
 	}
 	else
 	{
@@ -43,18 +43,18 @@ void sort(int low, int high)
 
 int main()
 {
-	int i, size;
+	int i, size, a[10];
 	printf("Enter the size of array: ");
 	scanf("%d", &size);
 	printf("Enter %d elements: ", size);
 	for(i = 0; i < size; i++)
 		scanf("%d", &a[i]);
-	printf("List before sorting\n");
+	printf("List before merge_sorting\n");
 	for (i = 0; i <= size; i++)
 		printf("%d ", a[i]);
 
-	sort(0, size);
-	printf("\nList after sorting\n");
+	merge_sort(a, 0, size);
+	printf("\nList after merge_sorting\n");
 	for (i = 0; i <= size; i++)
 		printf("%d ", a[i]);
 }
