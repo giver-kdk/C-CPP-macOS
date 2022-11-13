@@ -1,5 +1,9 @@
 {
   "files.associations": {
+<<<<<<< HEAD
+=======
+	"*.jsx": "javascriptreact",
+>>>>>>> 3331e03ce7327894975bad3e23f2756875811563
 	"ostream": "cpp",
 	"*.tcc": "cpp",
 	"string": "cpp",
