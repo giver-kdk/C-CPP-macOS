@@ -1,4 +1,4 @@
-// Program to find first and second derivative using centrtal difference formula 
+// Program to find first and second derivative using central difference formula 
 // And second order derivative formula
 #include <stdio.h>
 #include <math.h>
