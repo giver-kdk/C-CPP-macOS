@@ -1,108 +1,60 @@
-// Program to solve boundary value problem using shooting method
 #include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-// Let, dy/dx = z. Then, f1(x, y, z) = z
+
 float f1(float x, float y, float z)
 {
-	return (z);
+	return z;
 }
-// Let, dz/dx = x + y. Then, f1(x, y, z) = x + y
+
 float f2(float x, float y, float z)
 {
-	return (x + y);
+	return (2 * y) + (72 * x) - (8 * x * x);
 }
-float shoot(float x0, float y0, float z0, float xn, float h, int p)
+int main()
 {
-	float x, y, z, x1, y1, z1, k, l, k1, k2, k3, k4, l1, l2, l3, l4;
-	x = x0;
-	y = y0;
-	z = z0;
-	do
+	int i;
+	float m, xp, yp, zp, z, x1, x2, y1, y2, h, sy1, sy2, sz1, sz2, temp1, temp2, c[2], d[2];
+	printf("Enter x1,y1,x2,y2: ");
+	scanf("%f%f%f%f",&x1,&y1,&x2,&y2);
+	printf("Enter h: ");
+	scanf("%f",&h);
+	temp1 = x1;
+	temp2 = y1;
+
+	for (i = 0; i < 2; i++)
 	{
-		k1 = h * f1(x, y, z);
-		l1 = h * f2(x, y, z);
-		k2 = h * f1(x + h / 2.0, y + k1 / 2.0, z + l1 / 2.0);
-		l2 = h * f2(x + h / 2.0, y + k1 / 2.0, z + l1 / 2.0);
-		k3 = h * f1(x + h / 2.0, y + k2 / 2.0, z + l2 / 2.0);
-		l3 = h * f2(x + h / 2.0, y + k2 / 2.0, z + l2 / 2.0);
-		k4 = h * f1(x + h, y + k3, z + l3);
-		l4 = h * f2(x + h, y + k3, z + l3);
-		l = 1 / 6.0 * (l1 + 2 * l2 + 2 * l3 + l4);
-		k = 1 / 6.0 * (k1 + 2 * k2 + 2 * k3 + k4);
-		y1 = y + k;
-		x1 = x + h;
-		z1 = z + l;
-		x = x1;
-		y = y1;
-		z = z1;
-		if (p == 1)
+		printf("\nEnter z: ");
+		scanf("%f",&z);
+		d[i] = z;
+		do
 		{
-			printf("\n%f\t%f", x, y);
-		}
-	} while (x < xn);
-	return (y);
-}
-main()
-{
-	float x0, y0, h, xn, yn, z0, m1, m2, m3, b, b1, b2, b3, e;
-	int p = 0;
-	printf("\n  Enter x0,y0,xn,yn,h:");
-	scanf("%f%f%f%f%f", &x0, &y0, &xn, &yn, &h);
-	printf("\n  Enter the trial M1:");
-	scanf("%f", &m1);
-	b = yn;
-	z0 = m1;
-	b1 = shoot(x0, y0, z0, xn, h, p = 1);
-	printf("\nB1 is %f", b1);
-	if (fabs(b1 - b) < 0.00005)
-	{
-		printf("\n  The value of x and respective z are:\n");
-		e = shoot(x0, y0, z0, xn, h, p = 1);
-		return (0);
-	}
-	else
-	{
-		printf("\nEnter the value of M2:");
-		scanf("%f", &m2);
-		z0 = m2;
-		b2 = shoot(x0, y0, z0, xn, h, p = 1);
-		printf("\nB2 is %f", b2);
-	}
-	if (fabs(b2 - b) < 0.00005)
-	{
-		printf("\n  The value of x and respective z are\n");
-		e = shoot(x0, y0, z0, xn, h, p = 1);
-		return (0);
-	}
-	else
-	{
-		printf("\nM2=%f\tM1=%f", m2, m1);
-		m3 = m2 + (((m2 - m1) * (b - b2)) / (1.0 * (b2 - b1)));
-		if (b1 - b2 == 0)
-			exit(0);
+			printf("\n%f\t%f\t%f", x1, y1, z);
+			x1 = x1 + h;
+			xp = x1 - h;					// Set Previous Value
 
-		printf("\nExact value of M =%f", m3);
-		z0 = m3;
-		b3 = shoot(x0, y0, z0, xn, h, p = 0);
+			y1 = y1 + f1(xp, y1, z) * h;
+			yp = y1 - f1(x1, y1, z) * h;	// Set Previous Value
+
+			z = z + f2(xp, yp, z) * h;
+			zp = z - f2(x1, y1, z) * h;	// Set Previous Value
+		} while (x1 < x2);
+		c[i] = y1;
+		x1 = temp1;
+		y1 = temp2;
 	}
-	if (fabs(b3 - b) < 0.000005)
-	{
-		printf("\nThere is solution :\n");
-		e = shoot(x0, y0, z0, xn, h, p = 1);
-		exit(0);
-	}
+	// Linear Interpolation Formula
+	z = d[1] - (((c[1] - y2) * (d[1] - d[0])) / (c[1] - c[0]));
+	printf("\n");
 	do
 	{
-		m1 = m2;
-		m2 = m3;
-		b1 = b2;
-		b2 = b3;
-		m3 = m2 + (((m2 - m1) * (b - b2)) / (1.0 * (b2 - b1)));
-		z0 = m3;
-		b3 = shoot(x0, y0, z0, xn, h, p = 0);
+		printf("\n%f\t%f\t%f", x1, y1, z);
+		x1 = x1 + h;
+		xp = x1 - h;
 
-	} while (fabs(b3 - b) < 0.0005);
-	z0 = m3;
-	e = shoot(x0, y0, z0, xn, h, p = 1);
+		y1 = y1 + f1(xp, y1, z) * h;
+		yp = y1 - f1(x1, y1, z) * h;
+
+		z = z + f2(xp, yp, z) * h;
+		zp = z - f2(x1, y1, z) * h;
+	} while (x1 < x2);
+	return 0;
 }
