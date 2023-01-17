@@ -19,8 +19,12 @@ void linear_search(int L[], int n, int key)
 {
 	int i;
 	for (i = 0; i < n; i++)
+	{
 		if (key == L[i])
+		{
 			break;
+		}
+	}
 	if (i == n)
 		printf("\n Search Failure");
 	else
