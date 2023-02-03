@@ -31,3 +31,4 @@ struct node * insert(struct node * root, int key)
 	}
 	return root;
 }
+

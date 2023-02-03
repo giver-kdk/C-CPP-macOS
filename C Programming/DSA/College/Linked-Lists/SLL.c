@@ -20,14 +20,13 @@ void addbeg(struct SLL *head, int num)
 	if(head == NULL)
 	{
 		header = newNode;
-		printf("NULL Haha");
 	}
 	else
 	{
 		newNode->nextptr = header;
 		header = newNode;
-		printf("\nNew node has been added from beginning");
 	}
+	printf("\nNew node has been added from beginning");
 }
 void addend(struct SLL *head, int num)
 {
@@ -63,8 +62,8 @@ void delbeg(struct SLL *head)
 		temp = header;
 		header = header->nextptr;
 		// Print temp->data
+		printf("\nNode has been deleted from beginning");
 	}
-	printf("\nNode has been deleted from beginning");
 }
 void delend(struct SLL *head)
 {
@@ -77,15 +76,16 @@ void delend(struct SLL *head)
 	else
 	{
 		temp = header;
+		temp1 = temp;
 		while(temp->nextptr != NULL)
 		{
 			temp1 = temp;
-			temp = temp->nextptr;
+			temp = temp->nextptr; 
 		}
 		temp1->nextptr = NULL;
-		// Print temp->data
+		// P rint temp->data
+		printf("\nNode has been deleted from end");
 	}
-	printf("\nNode has been deleted from end");
 }
 
 void display(struct SLL *head)

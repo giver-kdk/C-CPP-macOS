@@ -11,7 +11,6 @@ void display(int stack[]);
 int main()
 {
 	int num, choice;
-
 	printf("1. PUSH\n2. POP\n3. Display\n4. Exit\n");
 	while(1)
 	{
