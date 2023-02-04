@@ -1,15 +1,16 @@
-// Program to design DFA that accepts set of all strings ending with 1 
+// Program to design DFA that accepts set of all strings containing odd number of 'a'
 #include <stdio.h>
-int state = -1;						// Current State
-enum STATES{q0, q1};				// Set of all states
-char inputs[2] = {'0', '1'};		// Set of all inputs
-int initial = q0;					// Initial State
-int final = q1;						// Set of Final States
+int state = -1;						
+enum STATES{q0, q1};				
+char inputs[2] = {'a', 'b'};		
+int initial = q0;					
+int final[] = {q1};					// Set of final states
+int n = 1;							// No. of final states
 
 void transition_q0(char input)
 {
-	if(input == inputs[0]) state = q0;
-	else if(input == inputs[1]) state = q1;
+	if(input == inputs[0]) state = q1;
+	else if(input == inputs[1]) state = q0;
 	else state = -1;
 }
 void transition_q1(char input)
@@ -27,9 +28,11 @@ int main()
 
 	while(choice != 'n' && choice != 'N')
 	{
+		int isAccepted = 0;
 		fflush(stdin);
-		printf("\nEnter the string: ");
+		printf("Enter a string: ");
 		gets(string);				// Reads Character even after whitespace
+
 		state = initial;			// Initialize state
 		for(i = 0; string[i] != '\0'; i++)
 		{
@@ -37,8 +40,16 @@ int main()
 			else if(state == q1) transition_q1(string[i]);
 			else break;
 		}
-		if(state == final) printf("\nString Accepted");
-		else printf("\nString Rejected");
+		for(i = 0; i < n; i++)
+		{
+			if(state == final[i])
+			{
+				printf("\nString Accepted");
+				isAccepted = 1;
+				break;
+			}
+		}
+		if(isAccepted == 0) printf("\nString Rejected");
 		if(state == -1) printf("\nInvalid String");
 		printf("\nContinue? (Y/N): ");
 		scanf(" %c", &choice);
