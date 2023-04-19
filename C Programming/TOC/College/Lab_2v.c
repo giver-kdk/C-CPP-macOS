@@ -98,7 +98,7 @@ int main()
 
 int * concat_array(int array1[50], int array2[50], int len1, int len2)
 {
-	int i, j = 0, result[50];
+	int i, j = 0, k, result[50];
 	for(i = 0; i < len1; i++)
 	{
 		result[j] = array1[i];
@@ -107,9 +107,17 @@ int * concat_array(int array1[50], int array2[50], int len1, int len2)
 	}
 	for(i = 0; i < len2; i++)
 	{
-		result[j] = array2[i];
-		i++;
-		j++;
+		// Union Logic
+		for(k = 0; k < len1; k++)
+		{
+			if(result[k] == array2[i]) break;
+		}
+		if(k == len1)
+		{
+			result[j] = array2[i];
+			i++;
+			j++;
+		} 
 	}
 	s = j;								// Updated Number of states 
 	return result;
