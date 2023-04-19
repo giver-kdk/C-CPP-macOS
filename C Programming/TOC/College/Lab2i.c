@@ -68,6 +68,7 @@ int main()
 		printf("\nContinue? (Y/N): ");
 		scanf(" %c", &choice);
 	}
+	printf("\n***** Name: Giver Khadka *****");
 	return 0;
 }
 

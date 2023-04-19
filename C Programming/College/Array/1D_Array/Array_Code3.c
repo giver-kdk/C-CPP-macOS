@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+// #include <conio.h>
 
 /*This program shows array stores 0 when atleast one element is defined*/
 void main()

@@ -1,28 +1,28 @@
-// Program to design DFA that accepts set of all strings starting with 01
+// Program to design DFA that accepts set of all strings containing with 001
 #include <stdio.h>
 int state = -1;						
 enum STATES{q0, q1, q2, q3};				
 char inputs[2] = {'0', '1'};		
 int initial = q0;					
-int final[] = {q2};				// Set of final states
+int final[] = {q3};				// Set of final states
 int n = 1;							// No. of final states
 
 void transition_q0(char input)
 {
 	if(input == inputs[0]) state = q1;
-	else if(input == inputs[1]) state = q3;
+	else if(input == inputs[1]) state = q0;
 	else state = -1;
-}
+} 
 void transition_q1(char input)
 {
-	if(input == inputs[0]) state = q3;
-	else if(input == inputs[1]) state = q2;
+	if(input == inputs[0]) state = q2;
+	else if(input == inputs[1]) state = q0;
 	else state = -1;
 }
 void transition_q2(char input)
 {
 	if(input == inputs[0]) state = q2;
-	else if(input == inputs[1]) state = q2;
+	else if(input == inputs[1]) state = q3;
 	else state = -1;
 }
 void transition_q3(char input)
@@ -68,6 +68,7 @@ int main()
 		printf("\nContinue? (Y/N): ");
 		scanf(" %c", &choice);
 	}
+	printf("\n***** Name: Giver Khadka *****");
 	return 0;
 }
 
