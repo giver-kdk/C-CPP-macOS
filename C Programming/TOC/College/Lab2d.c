@@ -22,7 +22,7 @@ void transition_q1(char input)
 }
 void transition_q2(char input)
 {
-	if(input == inputs[0] || input == inputs[1]) state = q3;
+	if(input == inputs[0] || input == inputs[1]) state = q2;
 	else state = -1;
 }
 void transition_q3(char input)

@@ -40,8 +40,8 @@ void transition_q2(char input)
 {
 	if(input == inputs[0] || input == inputs[1])
 	{
-	 	state = q3;
-		printf("b");
+	 	state = q2;
+		printf("a");
 	}
 	else state = -1;
 }
