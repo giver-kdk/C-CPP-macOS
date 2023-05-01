@@ -47,10 +47,10 @@ struct Process
     {
         for(j=0; j<n;j++)
         {
-            if(currAt <= p[j].at)
+            if(currAt == p[j].at)
             {
-                currAt = currAt + p[j].at;
-                currBt = p[j].at + p[j].bt;
+                currAt++;
+                currBt = currAt + p[j].bt;
                 if(p[j].pid != 1)
                 {
                     printf("-->");
