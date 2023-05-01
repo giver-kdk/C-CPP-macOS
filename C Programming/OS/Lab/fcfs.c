@@ -22,6 +22,7 @@ struct Process
         printf("\nEnter Process Arrival Time\n");
         printf("P[%d]:",i+1);
         scanf("%d",&p[i].at);
+        p[i].pid = i + 1;
         printf("\nEnter Process Burst Time\n");
         printf("P[%d]:",i+1);
         scanf("%d",&p[i].bt);
@@ -41,13 +42,20 @@ struct Process
 
     //Printing Gantt Chart
     int currAt = 0;
+    int currBt = 0;
     for(i=0; i<n; i++)
     {
         for(j=0; j<n;j++)
         {
-            if(currAt < p[j].at)
+            if(currAt <= p[j].at)
             {
-                currAt = p[j].at;
+                currAt = currAt + p[j].at;
+                currBt = p[j].at + p[j].bt;
+                if(p[j].pid != 1)
+                {
+                    printf("-->");
+                }
+                printf("P%d(%d-%d)", p[j].pid, currAt, currBt);
             }
         }
     }
