@@ -43,19 +43,21 @@ struct Process
     //Printing Gantt Chart
     int currAt = 0;
     int currBt = 0;
+    int currPos = 0;
     for(i=0; i<n; i++)
     {
         for(j=0; j<n;j++)
         {
             if(currAt == p[j].at)
             {
-                currAt++;
                 currBt = currAt + p[j].bt;
                 if(p[j].pid != 1)
                 {
                     printf("-->");
                 }
-                printf("P%d(%d-%d)", p[j].pid, currAt, currBt);
+                printf("P%d(%d-%d)", p[j].pid, currPos, currBt);
+                currPos = currAt + currBt;
+                currAt++;
             }
         }
     }
