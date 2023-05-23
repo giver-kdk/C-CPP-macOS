@@ -10,10 +10,10 @@ struct Process
 	int TAT;
 	int WT;
 	int finished;
-	int inQueue;
+	int inQueue;			// Tells whether a process has entered ready queue or not (at least once)
 } p[20];
 int readyQ[20], front = 0, rear = 0;
-
+// Find current process id with minimum Arrival Time
 int minimumAT(struct Process pro[20], int n)
 {
 	int min, id, i, j;
@@ -36,6 +36,7 @@ int minimumAT(struct Process pro[20], int n)
 	}
 	return id;
 }
+// Insert all current processes that are under minimum AT into ready queue
 void updateQ(struct Process p[20], int time, int queue[20], int n)
 {
 	int size = rear;
@@ -43,11 +44,11 @@ void updateQ(struct Process p[20], int time, int queue[20], int n)
 	{
 		if(p[i].AT <= time && p[i].inQueue == 0 && p[i].finished == 0)
 		{
-			readyQ[rear++] = i;
+			readyQ[rear++] = i;							// Store process id
 			p[i].inQueue = 1;
 		}
 	}
-	if(size == rear) readyQ[rear++] = -1;
+	if(size == rear) readyQ[rear++] = -1;				// Store -1 to indicate no process id stored
 }
 int main()
 {
@@ -78,8 +79,9 @@ int main()
 	{
 		for (i = front; i < rear; i++)
 		{
+			// Select un-executed process with minimum AT
 			if(readyQ[i] == -1) continue;
-			if (time != startAT) printf("-->");
+			if (time != startAT) printf(" --> ");
 			tempTime = currTime;
 			if (p[readyQ[i]].tempBT >= QUANTUM)
 			{
@@ -91,12 +93,14 @@ int main()
 				currTime+= p[readyQ[i]].tempBT;
 				p[readyQ[i]].tempBT = 0;
 			}
+			// Update time and set process status
 			if (currTime == time)
 			{
 				time++;
 				currTime++;
 			}
 			else time = currTime;
+			// Print Gantt Chart and update ready queue
 			printf("P%d(%d-%d)", readyQ[i] + 1, tempTime, currTime);
 			p[readyQ[i]].CT = currTime;
 			if (p[readyQ[i]].tempBT == 0) p[readyQ[i]].finished = 1;
@@ -105,20 +109,21 @@ int main()
 			{
 				readyQ[rear++] = readyQ[i];
 			}
-			front++;
+			front++;						// Don't run process which is already executed. So, increment "front"
 		}
+		// Simply increment time and update queue if no process arrived till current minimum AT
 		time++;
 		currTime++;
 		updateQ(p, currTime, readyQ, n);
 
 		notComplete = 0;
-
+		// Check if all processes are finished executing
 		for (j = 0; j < n; j++)
 		{
 			if (p[j].finished == 0) notComplete = 1;
 		}
 	}
-	// RR Table Printing and Calculation
+	// Display calculated output
 	printf("\nProcess\t\tCompletion Time\t\tTurnaround Time\t\tWaiting Time");
 	for (i = 0; i < n; i++)
 	{
