@@ -1,5 +1,4 @@
 // BFS algorithm in C
-
 #include <stdio.h>
 #include <stdlib.h>
 #define SIZE 40
