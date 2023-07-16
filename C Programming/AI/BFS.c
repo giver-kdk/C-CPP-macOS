@@ -1,4 +1,3 @@
-// BFS algorithm in C
 #include <stdio.h>
 #include <stdlib.h>
 #define SIZE 40
@@ -36,10 +35,13 @@ void bfs(struct Graph* graph, int startVertex) {
   graph->visited[startVertex] = 1;
   enqueue(q, startVertex);
 
+  int cost = 0; // Initialize cost to 0
+
   while (!isEmpty(q)) {
     printQueue(q);
     int currentVertex = dequeue(q);
     printf("Visited %d\n", currentVertex);
+    printf("Cost: %d\n", cost); // Print the cost to reach the current vertex
 
     struct node* temp = graph->adjLists[currentVertex];
 
@@ -52,6 +54,8 @@ void bfs(struct Graph* graph, int startVertex) {
       }
       temp = temp->next;
     }
+
+    cost++; // Increment the cost after visiting adjacent vertices
   }
 }
 

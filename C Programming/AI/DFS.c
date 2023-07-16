@@ -1,4 +1,3 @@
-// DFS algorithm in C
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,24 +11,24 @@ struct Graph {
   int numVertices;
   int* visited;
 
-  // We need int** to store a two dimensional array.
-  // Similary, we need struct node** to store an array of Linked lists
+  // We need int** to store a two-dimensional array.
+  // Similarly, we need struct node** to store an array of Linked lists
   struct node** adjLists;
 };
 
 // DFS algo
-void DFS(struct Graph* graph, int vertex) {
+void DFS(struct Graph* graph, int vertex, int cost) {
   struct node* adjList = graph->adjLists[vertex];
   struct node* temp = adjList;
 
   graph->visited[vertex] = 1;
-  printf("Visited %d \n", vertex);
+  printf("Visited %d (Cost: %d)\n", vertex, cost);
 
   while (temp != NULL) {
     int connectedVertex = temp->vertex;
 
     if (graph->visited[connectedVertex] == 0) {
-      DFS(graph, connectedVertex);
+      DFS(graph, connectedVertex, cost + 1);
     }
     temp = temp->next;
   }
@@ -96,7 +95,7 @@ int main() {
 
   printGraph(graph);
 
-  DFS(graph, 2);
+  DFS(graph, 2, 0);
 
   return 0;
 }

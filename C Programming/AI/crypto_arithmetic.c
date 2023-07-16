@@ -99,5 +99,6 @@ int main() {
     char s2[] = "MORE";
     char s3[] = "MONEY";
     if (solve(s1, s2, s3) == 0) printf("No solution\n");
+	printf("\n");
     return 0;
 }
